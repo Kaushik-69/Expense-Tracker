@@ -1,0 +1,132 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {            
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(100deg, #667eea 0%, #764ba2 100%);
+    padding: 20px;
+}
+.wrapper {
+    display: flex;
+    gap: 30px;
+    max-width: 1200px;
+    width: 100%;
+    justify-content: center;   
+    align-items: flex-start;   
+}
+.data-display {
+    background: whitesmoke;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(19, 19, 19, 0.2);
+    flex: 1;
+    max-width: 600px;
+    max-height: 600px;
+    overflow-y: auto;
+}
+        
+.container {
+    background: whitesmoke;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(19, 19, 19, 0.2);
+    flex:1;
+    max-width: 400px;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+    font-size: 28px;
+}
+
+h2 { 
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #555;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    font-family: inherit;
+    transition: border-color 0.3s ease;
+}
+
+input:focus,
+textarea:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+a{
+    text-decoration: none;
+    color: #000000;
+    font-weight: 700;
+}
+
+a:hover{
+    color: #47484a;
+}
+
+.list {
+    list-style-type: none;
+}
+
+
+
+        
+
+        
