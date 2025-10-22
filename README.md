@@ -35,4 +35,4 @@ Built using **HTML, CSS, and JavaScript** — stores data locally using the brow
 ![alt text](image-1.png)
 ---
 
-```bash
+
