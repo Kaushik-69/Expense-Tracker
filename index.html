@@ -12,10 +12,19 @@
         
 
         <div class="container">
-            <h1>Expense</h1>
+            <h1>Finance Tracker</h1>
             <form>
+
+                 <div class="form-group">
+                    <label for="type">Transaction Type</label>
+                    <select id="type" name="type" required style="width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 10px; font-size: 14px; font-family: inherit; background: white; cursor: pointer; transition: border-color 0.3s ease;">
+                        <option value="income">Income</option>
+                        <option value="expense">Expense</option>
+                    </select>
+                </div>
+                
                 <div class="form-group">
-                    <label for="detail">Expense Specification</label>
+                    <label for="detail">Specification</label>
                     <input type="text" id="specification" name="specification" placeholder="Specifications" required>
                 </div>
             
@@ -25,24 +34,22 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="message">Date</label>
-                    <input type="date" id="date" name="date">
+                    <label for="date">Date</label>
+                    <input type="date" id="date" name="date" required>
                 </div>
 
-                <button type="submit">Add</button>
+                <button type="submit">Add Transaction</button>
             </form>
 
-            <div style="margin-top: 20px; text-align: center;">
-                <a href="Earned.html">Earning Tracker</a>
-            </div>
+           
         </div>
 
         
         <div class="data-display">
-            <h2>Spent Data</h2>
-            <ul class="list">
+            <h2>Transaction</h2>
+            <div class="list">
                 
-            </ul>
+            </div>
         </div>
 
     </div>
