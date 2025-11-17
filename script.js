@@ -11,7 +11,7 @@ function initdb(){
             db = event.target.result;
 
             if(!db.objectStoreNames.contains(STORE_NAME)){
-                    const objstore = db.createObjectStor(STORE_NAME,{keyPath: 'id', autoIncrement:true});
+                    const objstore = db.createObjectStore(STORE_NAME,{keyPath: 'id', autoIncrement:true});
                 objstore.createIndex('type','type',{unique:false});
                 objstore.createIndex('date','date',{unique:false});
             }
@@ -38,4 +38,20 @@ document.addEventListener('DOMContentLoaded',async()=>{
 });
 
 
+form.addEventListener('submit',async(e)=>{
+    e.preventDefault();
+
+    const type = document.getElementById('type').value;
+    const specifications= document.getElementById('specifications').value;
+    const amount = getElementById('amount').value;
+    const date = document.getElementById('date').value;
+    
+    const transactions = {
+        type,
+        specification,
+        amount: parseFloat(amount),
+        date,
+        timestamp:Date.now()
+    };
+})
 
