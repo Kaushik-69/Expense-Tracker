@@ -53,5 +53,34 @@ form.addEventListener('submit',async(e)=>{
         date,
         timestamp:Date.now()
     };
-})
+
+    await savetransactions(transactions);
+
+    form.reset();
+    const tdy = new Date().toISOString().split('T')[0];
+    document.getElementById('date').value = tdy;
+    displaydata();
+});
+
+function savetransactions(transactions){
+    return new Promise((resolve,reject)=>{
+        const tx = db.transaction([STORE_NAME],'readwrite');
+        const store = tx.objectStore(STORE_NAME);
+        const req = store.add(transactions);
+        req.onsuccess = ()=> resolve(req.result);
+        req.onerror = ()=> reject(req.error);
+    });
+}
+
+function getalltransactions(){
+    return new Promise((resolve,reject)=>{
+        const tx = db.transaction([STORE_NAME],'readonly');
+        const store = tx.objectStore(STORE_NAME);
+        const req = store.getAll();
+        req.onsuccess = ()=> resolve(req.result);
+        req.onerror = ()=> reject(req.error); 
+    });
+}
+
+
 
