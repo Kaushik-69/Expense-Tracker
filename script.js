@@ -82,5 +82,19 @@ function getalltransactions(){
     });
 }
 
+async function displaydata(){
+    const alltransactions = await getalltransactions();
+
+    if(alltransactions.length===0){
+        datadisplay.innerHTML = '<p style="text-align: center; color: black;>No transactions entered yet.</p>';
+        return;
+    }
+}
 
 
+const income = alltransactions.filter(t => t.type==='income');
+const expense = alltransactions.filter(t=>t.type==='expense'); 
+
+const totalincome = income.reduce((sum,item)=> sum+item.income,0);
+const totalexpense = expense.reduce((sum,item)=> sum+item.expense,0);
+const balance = totalincome - totalexpense;
