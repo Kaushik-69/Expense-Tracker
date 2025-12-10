@@ -65,7 +65,7 @@ form.addEventListener('submit',async(e)=>{
 
 function savetransactions(transactions){
     return new Promise((resolve,reject)=>{
-        const tx = db.transaction([STORE_NAME],'readwrite');
+        const tx = db.transactions([STORE_NAME],'readwrite');
         const store = tx.objectStore(STORE_NAME);
         const req = store.add(transactions);
         req.onsuccess = ()=> resolve(req.result);
