@@ -181,9 +181,9 @@
     }
 
     function formatDate(dateString){
-        const data = new Date(dateString);
+        const date = new Date(dateString);
         const options = {year:'numeric',month:'short',day:'numeric'};
-        return date.toLocaleDateString('en-In',options);
+        return date.toLocaleDateString('en-IN',options);
     }
 
     function deleteTransaction(id){
@@ -196,7 +196,7 @@
                 displaydata();
                 resolve();
             };
-            req.onerror = () => reject(request.error);
+            req.onerror = () => reject(req.error);
         });
     }
 
