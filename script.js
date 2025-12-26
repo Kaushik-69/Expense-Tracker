@@ -133,22 +133,22 @@ function createCombinedTable(transactions, totalincome, totalexpense) {
                 <tr style="background: #667eea; color: white;">
                     <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Type</th>
                     <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Specification</th>
-                    <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Amount (₹)</th>
-                    <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Date</th>
-                    <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Action</th>
+                    <th style="padding: 12px; text-align: right; border: 1px solid #ddd;">Amount (₹)</th>
+                    <th style="padding: 12px; text-align: center; border: 1px solid #ddd;">Date</th>
+                    <th style="padding: 12px; text-align: center; border: 1px solid #ddd;">Action</th>
                 </tr>
             </thead>
             <tbody>
         `;
 
     transactions.forEach(item => {
-        const rowCol = item.type === 'income' ? '#9cffc0ff' : '#ff8686ff';
-        const textCol = item.type === 'income' ? '#065f46' : '#991b1b';
-        let tableHTML = `
-                 <tr style="border-bottom: 1px solid #ddd; background: ${rowCol};">
+        const rowCol = item.type === 'income' ? '#51ff91ff' : '#fd5353ff';
+        const textCol = item.type === 'income' ? '#076d38ff' : '#991b1b';
+        tableHTML += `
+                 <tr style="border-bottom: 1px solid #ddd; background: #ffffffff;">
                 <td style="padding: 10px; border: 1px solid #ddd; color: ${textCol}; font-weight: bold; text-transform: capitalize;">${item.type}</td>
                 <td style="padding: 10px; border: 1px solid #ddd;">${item.specification}</td>
-                <td style="padding: 10px; text-align: right; border: 1px solid #ddd; color: ${textCol}; font-weight: bold;">${item.amount.toFixed(2)}</td>
+                <td style="padding: 10px; text-align: right; border: 1px solid #ddd; color: #000; font-weight: bold;">${item.amount.toFixed(2)}</td>
                 <td style="padding: 10px; text-align: center; border: 1px solid #ddd;">${formatDate(item.date)}</td>
                 <td style="padding: 10px; text-align: center; border: 1px solid #ddd;">
                     <button onclick="deleteTransaction(${item.id})" style="width: auto; padding: 5px 15px; background: #dc3545; font-size: 14px; cursor: pointer;">Delete</button>
@@ -156,22 +156,22 @@ function createCombinedTable(transactions, totalincome, totalexpense) {
             </tr>
             `;
     });
-    tableHTML += `
-            <tbody>
-            <tfoot>
-                <tr style="background: #d1fae5; font-weight: bold;">
-                    <td style="padding: 12px; border: 1px solid #ddd;" colspan="2">TOTAL INCOME</td>
-                    <td style="padding: 12px; text-align: right; border: 1px solid #ddd; color: #065f46;">₹${totalincome.toFixed(2)}</td>
-                    <td colspan="2" style="padding: 12px; border: 1px solid #ddd;"></td>
-                </tr>
-                <tr style="background: #fee2e2; font-weight: bold;">
-                    <td style="padding: 12px; border: 1px solid #ddd;" colspan="2">TOTAL EXPENSE</td>
-                    <td style="padding: 12px; text-align: right; border: 1px solid #ddd; color: #991b1b;">₹${totalexpense.toFixed(2)}</td>
-                    <td colspan="2" style="padding: 12px; border: 1px solid #ddd;"></td>
-                </tr>
-            </tfoot>
-            </table>
-        `;
+    // tableHTML += `
+    //         <tbody>
+    //         <tfoot>
+    //             <tr style="background: #d1fae5; font-weight: bold;">
+    //                 <td style="padding: 12px; border: 1px solid #ddd;" colspan="2">TOTAL INCOME</td>
+    //                 <td style="padding: 12px; text-align: right; border: 1px solid #ddd; color: #000000ff;">₹${totalincome.toFixed(2)}</td>
+    //                 <td colspan="2" style="padding: 12px; border: 1px solid #ddd;"></td>
+    //             </tr>
+    //             <tr style="background: #fee2e2; font-weight: bold;">
+    //                 <td style="padding: 12px; border: 1px solid #ddd;" colspan="2">TOTAL EXPENSE</td>
+    //                 <td style="padding: 12px; text-align: right; border: 1px solid #ddd; color: #000000ff;">₹${totalexpense.toFixed(2)}</td>
+    //                 <td colspan="2" style="padding: 12px; border: 1px solid #ddd;"></td>
+    //             </tr>
+    //         </tfoot>
+    //         </table>
+    //     `;
     return tableHTML;
 }
 
