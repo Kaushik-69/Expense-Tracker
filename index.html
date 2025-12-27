@@ -1,33 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Finance Tracker</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    
+
     <div class="wrapper">
-        
+
 
         <div class="container">
             <h1>Finance Tracker</h1>
             <form>
 
-                 <div class="form-group">
+                <div class="form-group">
                     <label for="type">Transaction Type</label>
-                    <select id="type" name="type" required style="width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 10px; font-size: 14px; font-family: inherit; background: white; cursor: pointer; transition: border-color 0.3s ease;">
+                    <select id="type" name="type" required
+                        style="width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 10px; font-size: 14px; font-family: inherit; background: white; cursor: pointer; transition: border-color 0.3s ease;">
                         <option value="income">Income</option>
                         <option value="expense">Expense</option>
                     </select>
                 </div>
-                
+
                 <div class="form-group">
                     <label for="detail">Specification</label>
                     <input type="text" id="specification" name="specification" placeholder="Specifications" required>
                 </div>
-            
+
                 <div class="form-group">
                     <label for="amount">Amount</label>
                     <input type="number" id="amount" name="amount" placeholder="INR" required>
@@ -41,18 +44,19 @@
                 <button type="submit">Add Transaction</button>
             </form>
 
-           
+
         </div>
 
-        
+
         <div class="data-display">
             <h2>Transaction</h2>
             <div class="list">
-                
+
             </div>
         </div>
 
     </div>
-    <script type="text/JavaScript" src="script.js" ></script>
+    <script type="text/JavaScript" src="script.js"></script>
 </body>
+
 </html>

@@ -229,17 +229,53 @@ function formatDate(dateString) {
 }
 
 function deleteTransaction(id) {
-    return new Promise((resolve, reject) => {
-        const tx = db.transaction([STORE_NAME], 'readwrite');
-        const store = tx.objectStore(STORE_NAME);
-        const req = store.delete(id);
+    const modalHTML = `
+        <div class="modal-overlay" id="deleteModal">
+            <div class="modal-content">
+                <h3>Confirm Deletion</h3>
+                <p>You sure you wanna delete this transaction?!?!?</p>
+                <div class="modal-buttons">
+                    <button class="modal-btn modal-btn-cancel" onclick="closeModal()">Cancel</button>
+                    <button class="modal-btn modal-btn-delete" onclick="confirmDelete(${id})">Delete</button>
+                </div>
+            </div>
+        </div>
+    `;
 
-        req.onsuccess = () => {
-            displaydata();
-            resolve();
-        };
-        req.onerror = () => reject(req.error);
+    document.body.insertAdjacentHTML('beforeend', modalHTML);
+
+    document.getElementById('deleteModal').addEventListener('click', function (e) {
+        if (e.target === this) {
+            closeModal();
+        }
     });
+
+}
+
+function closeModal() {
+    const modal = document.getElementById('deleteModal');
+    if (modal) {
+        modal.style.animation = 'fadeOut .2s ease';
+        setTimeout(() => {
+            modal.remove();
+        }, 200);
+    }
+}
+
+function confirmDelete(id) {
+    closeModal();
+    const tx = db.transaction([STORE_NAME], 'readwrite');
+    const store = tx.objectStore(STORE_NAME);
+    const req = store.delete(id);
+
+    req.onsuccess = () => {
+        displaydata();
+    };
+
+    req.onerror = () => {
+        console.error('Facing error in deleting this transaction;', req.error);
+        alert('Failed to delete the transaction. Try again.😊');
+    };
 }
 
 
