@@ -237,3 +237,44 @@ a:hover {
 .modal-btn:active {
     transform: translateY(0);
 }
+
+@media screen and (max-width:1024px) {
+    .wrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .container,
+    .data-display {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .data-display {
+        max-height: none;
+    }
+}
+
+@media screen and (max-width:768px) {
+    body {
+        padding: 15px;
+        align-items: center;
+    }
+
+    .wrapper {
+        gap: 15px;
+    }
+
+    .container,
+    .data-display {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    .data-display {
+        max-height: none;
+    }
+}
