@@ -87,7 +87,7 @@ async function displaydata() {
     const alltransactions = await getalltransactions();
 
     if (alltransactions.length === 0) {
-        datadisplay.innerHTML = '<p style="text-align: center; color: black;">No transactions entered yet.</p>';
+        datadisplay.innerHTML = '<p style="text-align: center; color: #b0b0b0;">No transactions entered yet.</p>';
         return;
     }
 
@@ -101,26 +101,26 @@ async function displaydata() {
     let html = '';
 
     html += `
-            <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 10px; margin-bottom: 30px;">
-                <h3 style="margin: 0 0 15px 0; color: white;">Financial Summary</h3>
-                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; text-align: center;">
+            <div style="background: linear-gradient(150deg, #FF6B35 0%, #F7931E 30%, #FF3F8E 70%, #C738D8 100%); color: white; padding: 25px; border-radius: 15px; margin-bottom: 30px; box-shadow: 0 8px 32px rgba(255, 107, 53, 0.4);">
+                <h3 style="margin: 0 0 20px 0; color: white; font-size: 22px;">Financial Summary</h3>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; text-align: center;">
                     <div>
-                        <div style="font-size: 14px; opacity: 0.9;">Total Income</div>
-                        <div style="font-size: 24px; font-weight: bold;">₹${totalincome.toFixed(2)}</div>
+                        <div style="font-size: 13px; opacity: 0.95; letter-spacing: 0.5px; text-transform: uppercase;">Total Income</div>
+                        <div style="font-size: 26px; font-weight: bold; margin-top: 8px;">₹${totalincome.toFixed(2)}</div>
                     </div>
                     <div>
-                        <div style="font-size: 14px; opacity: 0.9;">Total Expense</div>
-                        <div style="font-size: 24px; font-weight: bold;">₹${totalexpense.toFixed(2)}</div>
+                        <div style="font-size: 13px; opacity: 0.95; letter-spacing: 0.5px; text-transform: uppercase;">Total Expense</div>
+                        <div style="font-size: 26px; font-weight: bold; margin-top: 8px;">₹${totalexpense.toFixed(2)}</div>
                     </div>
                     <div>
-                        <div style="font-size: 14px; opacity: 0.9;">Balance</div>
-                        <div style="font-size: 24px; font-weight: bold; color: ${balance >= 0 ? '#4ade80' : '#f87171'};">₹${balance.toFixed(2)}</div>
+                        <div style="font-size: 13px; opacity: 0.95; letter-spacing: 0.5px; text-transform: uppercase;">Balance</div>
+                        <div style="font-size: 26px; font-weight: bold; margin-top: 8px;">₹${balance.toFixed(2)}</div>
                     </div>
                 </div>
             </div>
         `;
 
-    html += `<h3 style="color:  #667eea; margin-bottom: 15px;">All Transactions</h3>`;
+    html += `<h3 style="color: #ffffff; margin-bottom: 20px; font-size: 20px;">All Transactions</h3>`;
     html += createCombinedTable(alltransactions, totalincome, totalexpense);
     datadisplay.innerHTML = html;
 }
@@ -128,30 +128,30 @@ async function displaydata() {
 function createCombinedTable(transactions, totalincome, totalexpense) {
     transactions.sort((a, b) => new Date(b.date) - new Date(a.date));
     let tableHTML = `
-            <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+            <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px; overflow: hidden; border-radius: 10px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);">
             <thead>
-                <tr style="background: #667eea; color: white;">
-                    <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Type</th>
-                    <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Specification</th>
-                    <th style="padding: 12px; text-align: right; border: 1px solid #ddd;">Amount (₹)</th>
-                    <th style="padding: 12px; text-align: center; border: 1px solid #ddd;">Date</th>
-                    <th style="padding: 12px; text-align: center; border: 1px solid #ddd;">Action</th>
+                <tr style="background: linear-gradient(135deg, #0099FF 0%, #00B8FF 100%); color: white;">
+                    <th style="padding: 14px; text-align: left; border: none; font-weight: 600;">Type</th>
+                    <th style="padding: 14px; text-align: left; border: none; font-weight: 600;">Specification</th>
+                    <th style="padding: 14px; text-align: right; border: none; font-weight: 600;">Amount (₹)</th>
+                    <th style="padding: 14px; text-align: center; border: none; font-weight: 600;">Date</th>
+                    <th style="padding: 14px; text-align: center; border: none; font-weight: 600;">Action</th>
                 </tr>
             </thead>
             <tbody>
         `;
 
     transactions.forEach(item => {
-        const rowCol = item.type === 'income' ? '#51ff91ff' : '#fd5353ff';
-        const textCol = item.type === 'income' ? '#076d38ff' : '#991b1b';
+        const textCol = item.type === 'income' ? '#00FF9D' : '#FF3366';
+        const bgCol = item.type === 'income' ? 'rgba(0, 255, 157, 0.05)' : 'rgba(255, 51, 102, 0.05)';
         tableHTML += `
-                 <tr style="border-bottom: 1px solid #ddd; background: #ffffffff;">
-                <td style="padding: 10px; border: 1px solid #ddd; color: ${textCol}; font-weight: bold; text-transform: capitalize;">${item.type}</td>
-                <td style="padding: 10px; border: 1px solid #ddd;">${item.specification}</td>
-                <td style="padding: 10px; text-align: right; border: 1px solid #ddd; color: #000; font-weight: bold;">${item.amount.toFixed(2)}</td>
-                <td style="padding: 10px; text-align: center; border: 1px solid #ddd;">${formatDate(item.date)}</td>
-                <td style="padding: 10px; text-align: center; border: 1px solid #ddd;">
-                    <button onclick="deleteTransaction(${item.id})" style="width: auto; padding: 5px 15px; background: #dc3545; font-size: 14px; cursor: pointer;">Delete</button>
+                 <tr style="border-bottom: 1px solid #2a2a2a; background: ${bgCol}; transition: all 0.2s ease;" onmouseover="this.style.background='rgba(0, 184, 255, 0.1)'" onmouseout="this.style.background='${bgCol}'">
+                <td style="padding: 12px; border: none; color: ${textCol}; font-weight: 600; text-transform: capitalize;">${item.type}</td>
+                <td style="padding: 12px; border: none; color: #e0e0e0;">${item.specification}</td>
+                <td style="padding: 12px; text-align: right; border: none; color: #ffffff; font-weight: 600;">${item.amount.toFixed(2)}</td>
+                <td style="padding: 12px; text-align: center; border: none; color: #b0b0b0;">${formatDate(item.date)}</td>
+                <td style="padding: 12px; text-align: center; border: none;">
+                    <button onclick="deleteTransaction(${item.id})" style="width: auto; padding: 6px 16px; background: linear-gradient(135deg, #FF3366 0%, #FF0055 100%); color: white; border: none; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s ease; box-shadow: 0 2px 8px rgba(255, 51, 102, 0.3);" onmouseover="this.style.transform='translateY(-1px)'; this.style.boxShadow='0 4px 12px rgba(255, 51, 102, 0.5)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(255, 51, 102, 0.3)'">Delete</button>
                 </td>
             </tr>
             `;
