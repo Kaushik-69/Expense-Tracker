@@ -30,7 +30,7 @@ Built using **HTML, CSS, and JavaScript** — stores data locally using the brow
 ## 📷 Preview
 - On Big screens(Laptops/Desktops)
 ![alt text](image.png)
-
+---
 - On Small screens(Mobiles)
 ![alt text](image1.png)
 ![alt text](image2.png)
