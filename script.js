@@ -151,8 +151,8 @@ function createCombinedTable(transactions, totalincome, totalexpense) {
             `;
         });
 
-        cardsHTML += '</div>';
-        return cardsHTML;
+        cardHTML += '</div>';
+        return cardHTML;
 
     }
     else {
