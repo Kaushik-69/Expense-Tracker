@@ -127,16 +127,16 @@ async function displaydata() {
 
 function createCombinedTable(transactions, totalincome, totalexpense) {
     transactions.sort((a, b) => new Date(b.date) - new Date(a.date));
-    const isMoblie = window.innerWidth <= 480;
+    const isMobile = window.innerWidth <= 480;
 
-    if (isMoblie) {
+    if (isMobile) {
         let cardHTML = '<div class="transactions-cards">';
         transactions.forEach(item => {
             const textCol = item.type === 'income' ? '#00FF9D' : '#FF3366';
             const bgCol = item.type === 'income' ? 'rgba(0, 255, 157, 0.1)' : 'rgba(255, 51, 102, 0.1)';
             const borderCol = item.type === 'income' ? '#00FF9D' : '#FF3366';
 
-            cardsHTML += `
+            cardHTML += `
                 <div style="background: ${bgCol}; border-left: 4px solid ${borderCol}; padding: 15px; margin-bottom: 12px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
                         <span style="color: ${textCol}; font-weight: 700; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px;">${item.type}</span>
