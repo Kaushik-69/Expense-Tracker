@@ -33,7 +33,7 @@ Built using **HTML, CSS, and JavaScript** — stores data locally using the brow
 ---
 - On Small screens(Mobiles)
 ![alt text](image1.png)
-
+---
 ![alt text](image2.png)
 ---
 
