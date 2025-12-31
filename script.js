@@ -104,17 +104,17 @@ async function displaydata() {
             <div style="background: linear-gradient(150deg, #FF6B35 0%, #F7931E 30%, #FF3F8E 70%, #C738D8 100%); color: white; padding: 25px; border-radius: 15px; margin-bottom: 30px; box-shadow: 0 8px 32px rgba(255, 107, 53, 0.4);">
                 <h3 style="margin: 0 0 20px 0; color: white; font-size: 22px;">Financial Summary</h3>
                 <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; text-align: center;">
-                    <div>
+                    <div style="overflow: hidden;">
                         <div style="font-size: 13px; opacity: 0.95; letter-spacing: 0.5px; text-transform: uppercase;">Total Income</div>
-                        <div style="font-size: 26px; font-weight: bold; margin-top: 8px;">₹${totalincome.toFixed(2)}</div>
+                        <div style="font-size: clamp(18px, 4vw, 26px); font-weight: bold; margin-top: 8px; word-break: break-all;">₹${totalincome.toFixed(2)}</div>
                     </div>
-                    <div>
+                    <div style="overflow: hidden;">
                         <div style="font-size: 13px; opacity: 0.95; letter-spacing: 0.5px; text-transform: uppercase;">Total Expense</div>
-                        <div style="font-size: 26px; font-weight: bold; margin-top: 8px;">₹${totalexpense.toFixed(2)}</div>
+                        <div style="font-size: clamp(18px, 4vw, 26px); font-weight: bold; margin-top: 8px; word-break: break-all;">₹${totalexpense.toFixed(2)}</div>
                     </div>
-                    <div>
+                    <div style="overflow: hidden;">
                         <div style="font-size: 13px; opacity: 0.95; letter-spacing: 0.5px; text-transform: uppercase;">Balance</div>
-                        <div style="font-size: 26px; font-weight: bold; margin-top: 8px;">₹${balance.toFixed(2)}</div>
+                        <div style="font-size: clamp(18px, 4vw, 26px); font-weight: bold; margin-top: 8px; word-break: break-all;">₹${balance.toFixed(2)}</div>
                     </div>
                 </div>
             </div>
@@ -172,6 +172,10 @@ function createCombinedTable(transactions, totalincome, totalexpense) {
     //         </tfoot>
     //         </table>
     //     `;
+    tableHTML += `
+        </tbody>
+    </table>
+`;
     return tableHTML;
 }
 
