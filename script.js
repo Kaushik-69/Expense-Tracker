@@ -127,7 +127,36 @@ async function displaydata() {
 
 function createCombinedTable(transactions, totalincome, totalexpense) {
     transactions.sort((a, b) => new Date(b.date) - new Date(a.date));
-    let tableHTML = `
+    const isMoblie = window.innerWidth <= 480;
+
+    if (isMoblie) {
+        let cardHTML = '<div class="transactions-cards">';
+        transactions.forEach(item => {
+            const textCol = item.type === 'income' ? '#00FF9D' : '#FF3366';
+            const bgCol = item.type === 'income' ? 'rgba(0, 255, 157, 0.1)' : 'rgba(255, 51, 102, 0.1)';
+            const borderCol = item.type === 'income' ? '#00FF9D' : '#FF3366';
+
+            cardsHTML += `
+                <div style="background: ${bgCol}; border-left: 4px solid ${borderCol}; padding: 15px; margin-bottom: 12px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                        <span style="color: ${textCol}; font-weight: 700; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px;">${item.type}</span>
+                        <span style="color: #b0b0b0; font-size: 11px;">${formatDate(item.date)}</span>
+                    </div>
+                    <div style="color: #e0e0e0; font-size: 15px; margin-bottom: 12px; font-weight: 500;">${item.specification}</div>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="color: #ffffff; font-size: 20px; font-weight: 700;">₹${item.amount.toFixed(2)}</span>
+                        <button onclick="deleteTransaction(${item.id})" style="padding: 10px 20px; background: linear-gradient(135deg, #FF3366 0%, #FF0055 100%); color: white; border: none; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; box-shadow: 0 2px 10px rgba(255, 51, 102, 0.3);">Delete</button>
+                    </div>
+                </div>
+            `;
+        });
+
+        cardsHTML += '</div>';
+        return cardsHTML;
+
+    }
+    else {
+        let tableHTML = `
             <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px; overflow: hidden; border-radius: 10px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);">
             <thead>
                 <tr style="background: linear-gradient(135deg, #0099FF 0%, #00B8FF 100%); color: white;">
@@ -141,10 +170,10 @@ function createCombinedTable(transactions, totalincome, totalexpense) {
             <tbody>
         `;
 
-    transactions.forEach(item => {
-        const textCol = item.type === 'income' ? '#00FF9D' : '#FF3366';
-        const bgCol = item.type === 'income' ? 'rgba(0, 255, 157, 0.05)' : 'rgba(255, 51, 102, 0.05)';
-        tableHTML += `
+        transactions.forEach(item => {
+            const textCol = item.type === 'income' ? '#00FF9D' : '#FF3366';
+            const bgCol = item.type === 'income' ? 'rgba(0, 255, 157, 0.05)' : 'rgba(255, 51, 102, 0.05)';
+            tableHTML += `
                  <tr style="border-bottom: 1px solid #2a2a2a; background: ${bgCol}; transition: all 0.2s ease;" onmouseover="this.style.background='rgba(0, 184, 255, 0.1)'" onmouseout="this.style.background='${bgCol}'">
                 <td style="padding: 12px; border: none; color: ${textCol}; font-weight: 600; text-transform: capitalize;">${item.type}</td>
                 <td style="padding: 12px; border: none; color: #e0e0e0;">${item.specification}</td>
@@ -155,29 +184,37 @@ function createCombinedTable(transactions, totalincome, totalexpense) {
                 </td>
             </tr>
             `;
-    });
-    // tableHTML += `
-    //         <tbody>
-    //         <tfoot>
-    //             <tr style="background: #d1fae5; font-weight: bold;">
-    //                 <td style="padding: 12px; border: 1px solid #ddd;" colspan="2">TOTAL INCOME</td>
-    //                 <td style="padding: 12px; text-align: right; border: 1px solid #ddd; color: #000000ff;">₹${totalincome.toFixed(2)}</td>
-    //                 <td colspan="2" style="padding: 12px; border: 1px solid #ddd;"></td>
-    //             </tr>
-    //             <tr style="background: #fee2e2; font-weight: bold;">
-    //                 <td style="padding: 12px; border: 1px solid #ddd;" colspan="2">TOTAL EXPENSE</td>
-    //                 <td style="padding: 12px; text-align: right; border: 1px solid #ddd; color: #000000ff;">₹${totalexpense.toFixed(2)}</td>
-    //                 <td colspan="2" style="padding: 12px; border: 1px solid #ddd;"></td>
-    //             </tr>
-    //         </tfoot>
-    //         </table>
-    //     `;
-    tableHTML += `
-        </tbody>
-    </table>
-`;
-    return tableHTML;
+        });
+        // tableHTML += `
+        //         <tbody>
+        //         <tfoot>
+        //             <tr style="background: #d1fae5; font-weight: bold;">
+        //                 <td style="padding: 12px; border: 1px solid #ddd;" colspan="2">TOTAL INCOME</td>
+        //                 <td style="padding: 12px; text-align: right; border: 1px solid #ddd; color: #000000ff;">₹${totalincome.toFixed(2)}</td>
+        //                 <td colspan="2" style="padding: 12px; border: 1px solid #ddd;"></td>
+        //             </tr>
+        //             <tr style="background: #fee2e2; font-weight: bold;">
+        //                 <td style="padding: 12px; border: 1px solid #ddd;" colspan="2">TOTAL EXPENSE</td>
+        //                 <td style="padding: 12px; text-align: right; border: 1px solid #ddd; color: #000000ff;">₹${totalexpense.toFixed(2)}</td>
+        //                 <td colspan="2" style="padding: 12px; border: 1px solid #ddd;"></td>
+        //             </tr>
+        //         </tfoot>
+        //         </table>
+        //     `;
+        tableHTML += `
+            </tbody>
+            </table>
+        `;
+        return tableHTML;
+    }
+
+
 }
+window.addEventListener('resize', () => {
+    if (db) {
+        displaydata();
+    }
+});
 
 // function createTable(transactions,type){
 //     const color = type === 'income' ? '#16a34a' : '#dc2626';
