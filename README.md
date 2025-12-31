@@ -28,11 +28,11 @@ Built using **HTML, CSS, and JavaScript** — stores data locally using the brow
 ---
 
 ## 📷 Preview
-- Earnings
+- On Big screens(Laptops/Desktops)
 ![alt text](image.png)
 
-- Expense
-![alt text](image-1.png)
+- On Small screens(Mobiles)
+![alt text](image1.png)(![alt text](image2.png))
 ---
 
 
